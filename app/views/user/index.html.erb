@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<h1>Welcome to the photo hub</h1>
+<head>
+  <style>
+      body {
+          background-color: lavenderblush
+      }
+
+      h3 {
+          color: navy
+      }
+
+      p {
+          color: cornflowerblue
+      }
+
+      h1 {
+          text-shadow: 2px 2px;
+      }
+
+      td {
+          align-items: center
+      }
+
+      table, th, td {
+          border: 1px solid black;
+          border-collapse: collapse;
+          padding: 20px
+      }
+
+      table {
+          width: 30%;
+          backdrop-filter: opacity(40%)
+      }
+  </style>
+</head>
+<body bgcolor="#e6e6fa">
+<h3><i>There are 6 users in this group</i></h3>
+<table>
+  <thead>
+  <tr>
+    <th><h2>Index</h2></th>
+    <th><h2>First</h2></th>
+    <th><h2>Last</h2></th>
+  </tr>
+  </thead>
+    <% @users.map  do |user| %>
+    <tr>
+      <td><%= link_to user.id, user_photos_path(user.id) %></td>
+      <td><%= user.first_name %></td>
+      <td><%= user.last_name %></td>
+    </tr>
+  <% end %>
+</table>
+</body>
+</html>

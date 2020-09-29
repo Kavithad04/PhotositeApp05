@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+      img {
+          max-width: 40%;
+          max-height: 20%;
+      }
+  </style>
+  <form>
+    <input type="button" value="Go back!" onclick="history.back()" align="right">
+  </form>
+  <title> PHOTOSITE </title>
+</head>
+<body bgcolor="#faebd7">
+<div>
+  <h1>
+    <center>Photosite</center>
+  </h1>
+  <h3>
+    <center><i>User Photo Page</i></center>
+  </h3>
+</div>
+<div>
+  <center>
+    <h1>Photos of <%= @user.first_name %> <%= @user.last_name %></h1>
+  </center>
+  <% @photos.each do |photo| %>
+    <center>
+      <img src="<%= photo.file_url %>">
+      <div>Photo Created at <%= photo.date_time %></div>
+    </center>
+
+    <% @comments.where("photo_id=?", photo.id).each do |comment| %>
+      <li>
+        <div>
+          <p>
+          <center>Comment: <%= comment.comment %></center>
+          </p>
+          <p>
+          <center>Created at: <%= comment.date_time %></center>
+          </p>
+          <p>
+          <center>Posted by: <%= link_to display_name(comment.user_id), user_photos_path(comment.user_id) %></center>
+          </p>
+        </div>
+      </li>
+    <% end %>
+    </div>
+    <br>
+  <% end %>
+  </body>
+</html>
